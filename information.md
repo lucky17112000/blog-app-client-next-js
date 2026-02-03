@@ -3,3 +3,10 @@ root->src->app->in app folder all things directly will go to route
 1.react hook->use state, use effect...
 2.onclick, onsubmit.....
 
+
+## parellal Routes
+
+## Routes Group
+
+## partial rendaring
+
