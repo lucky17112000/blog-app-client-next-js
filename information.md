@@ -231,3 +231,11 @@ LocalStorage হলো browser only storage।
 | JS Access              | Optional (HttpOnly) | Always          |
 | Best use               | Auth, Session       | Theme, UI State |
 
+
+### data fetching 
+- if i want to handle anything in server componant we have to only use fetch we cannot even use axios or any other library
+- data fetching solution for client component -> swr,react query,axios , rtk query etc
+#### basic rule of thumb of data fetching
+- into one feature we should use either client side data fetching or server side data fetching not both
+- if it is not highly intractive page we should go for server side data fetching otherwise client side data fetching.
+- we can actual data fetching do in my server componant and pass it to the client componant by "use()".
