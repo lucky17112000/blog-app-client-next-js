@@ -6,14 +6,39 @@ const API_URL = env.API_URL;
 //3. next: {revalidate:10}->ISR(incremental static regeneration)mix between static and dynamic page
 
 //this is totally basic static dynamic and between things are clear by this service file.but in this file we are using only 
+interface GetBlogsParams {
+    isFeatured?: boolean;
+    serach?: string;
+    status?:string;
 
+}
+interface ServiceOptions{
+    cache?:RequestCache
+    reValidate?:number
+    
+}
 export const blogService = {
-    getBlogPosts: async function () {
+    getBlogPosts: async function (params?: GetBlogsParams, options?:ServiceOptions) {
         try {
-            const res = await fetch(`${API_URL}/posts`, {
-               next: {revalidate:10}
-               //initially static side and 10 sec po por data update hobe without any command behind the scene it will auto build.after 10 sec all user get new data
-            });
+            const url = new URL(`${API_URL}/posts`);
+            if(params){
+                Object.entries(params).forEach(([key , value])=>{
+                    if(value !== undefined && value !==  null && value !==""){
+                        url.searchParams.append(key , value)
+                    }
+                })
+
+            }
+            // url.searchParams.append("key" , "value");
+            const config:RequestInit={};
+            if(options?.cache){
+                config.cache=options.cache;
+            }
+            if(options?.reValidate){
+                config.next = { revalidate: options.reValidate };
+            }
+             console.log("Constructed URL:", url.toString());
+            const res = await fetch(url.toString(), config);
 
             const data = await res.json();
             return { data: data, error: null }
