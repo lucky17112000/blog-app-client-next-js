@@ -239,3 +239,6 @@ LocalStorage হলো browser only storage।
 - into one feature we should use either client side data fetching or server side data fetching not both
 - if it is not highly intractive page we should go for server side data fetching otherwise client side data fetching.
 - we can actual data fetching do in my server componant and pass it to the client componant by "use()".
+- ISR-> incremental static regeneration-> it is a method of static site generation where we can update the static page after some time without rebuilding the whole site. it is a way to keep the static site up to date without rebuilding the whole site.
+- SSG-> static site generation
+- SSR-> server side rendering
